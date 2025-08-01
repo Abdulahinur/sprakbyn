@@ -1,0 +1,17 @@
+[
+  {
+    "id": "construction",
+    "title": "Bygg & Konstruktion",
+    "description": "Verktyg och termer för byggbranschen",
+    "image": "assets/images/construction.jpg",
+    "screen": "/construction"
+  },
+  {
+    "id": "transport",
+    "title": "Transport & Leverans",
+    "description": "Ord relaterade till transport",
+    "image": "assets/images/transport.jpg",
+    "screen": "/transport"
+  }
+  // more...
+]

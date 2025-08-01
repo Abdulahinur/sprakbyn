@@ -1,0 +1,36 @@
+[
+    {
+      "word": "hammare",
+      "translations": {
+        "so": "dubbe",
+        "ar": "مطرقة",
+        "ti": "መደብ",
+        "pl": "młotek",
+        "lv": "āmurs"
+      },
+      "audio": "assets/audio/hammare.mp3"
+    },
+    {
+      "word": "spik",
+      "translations": {
+        "so": "qod",
+        "ar": "مسمار",
+        "ti": "ሰንኪ",
+        "pl": "gwóźdź",
+        "lv": "nagla"
+      },
+      "audio": "assets/audio/spik.mp3"
+    },
+    {
+      "word": "hjälm",
+      "translations": {
+        "so": "koofiyad badbaado",
+        "ar": "خوذة",
+        "ti": "ኮፍያ መጠበቂያ",
+        "pl": "kask",
+        "lv": "ķivere"
+      },
+      "audio": "assets/audio/hjalm.mp3"
+    }
+  ]
+  

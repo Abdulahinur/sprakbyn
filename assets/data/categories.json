@@ -1,0 +1,58 @@
+[
+  {
+    "id": "construction",
+    "title": "Bygg & Konstruktion",
+    "description": "Verktyg och termer för byggbranschen",
+    "image": "assets/images/construction.jpg",
+    "screen": "/construction"
+  },
+  {
+    "id": "transport",
+    "title": "Transport & Leverans",
+    "description": "Ord relaterade till transportarbete",
+    "image": "assets/images/transport.jpg",
+    "screen": "/transport"
+  },
+  {
+    "id": "cleaning",
+    "title": "Städning",
+    "description": "Vanliga ord inom städarbete",
+    "image": "assets/images/cleaning.jpg",
+    "screen": "/cleaning"
+  },
+  {
+    "id": "elderly_care",
+    "title": "Äldreomsorg",
+    "description": "Svenska ord för äldreboende",
+    "image": "assets/images/elderly_care.jpg",
+    "screen": "/elderly_care"
+  },
+  {
+    "id": "restaurant",
+    "title": "Restaurang & Kök",
+    "description": "Ord för kök och servering",
+    "image": "assets/images/restaurant.jpg",
+    "screen": "/restaurant"
+  },
+  {
+    "id": "store",
+    "title": "Butik & Kassaarbete",
+    "description": "Fraser och ord för butiksmiljö",
+    "image": "assets/images/store.jpg",
+    "screen": "/store"
+  },
+  {
+    "id": "healthcare",
+    "title": "Sjukvård & Vårdbiträde",
+    "description": "Vårdrelaterade termer",
+    "image": "assets/images/healthcare.jpg",
+    "screen": "/healthcare"
+  },
+  {
+    "id": "warehouse",
+    "title": "Industri & Lager",
+    "description": "Ord för lager- och industrijobb",
+    "image": "assets/images/warehouse.jpg",
+    "screen": "/warehouse"
+  }
+]

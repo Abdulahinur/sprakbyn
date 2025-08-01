@@ -1,0 +1,106 @@
+{
+    "categoryId": "construction",
+    "sections": [
+      {
+        "title": "Verktyg",
+        "words": [
+          {
+            "swedish": "hammare",
+            "translations": {
+              "somali": "dubbe",
+              "arabic": "مطرقة",
+              "tigrinya": "መደረቢ",
+              "polish": "młotek",
+              "latvian": "āmurs"
+            }
+          },
+          {
+            "swedish": "skruvmejsel",
+            "translations": {
+              "somali": "mashiinka furaha",
+              "arabic": "مفك براغي",
+              "tigrinya": "መቐንዕቀኛ",
+              "polish": "śrubokręt",
+              "latvian": "skrūvgriezis"
+            }
+          },
+          {
+            "swedish": "såg",
+            "translations": {
+              "somali": "miinshaar",
+              "arabic": "منشار",
+              "tigrinya": "መገዳገዲ",
+              "polish": "piła",
+              "latvian": "zāģis"
+            }
+          },
+          {
+            "swedish": "spik",
+            "translations": {
+              "somali": "dabo",
+              "arabic": "مسمار",
+              "tigrinya": "መሰል",
+              "polish": "gwóźdź",
+              "latvian": "nagla"
+            }
+          },
+          {
+            "swedish": "måttband",
+            "translations": {
+              "somali": "cabbir xadhig",
+              "arabic": "شريط قياس",
+              "tigrinya": "መለኪያ ገመድ",
+              "polish": "taśma miernicza",
+              "latvian": "mērlente"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Säkerhet",
+        "words": [
+          {
+            "swedish": "hjälm",
+            "translations": {
+              "somali": "koofiyadda badbaadada",
+              "arabic": "خوذة",
+              "tigrinya": "ኮፍያ መድሓኒት",
+              "polish": "kask",
+              "latvian": "aizsargķivere"
+            }
+          },
+          {
+            "swedish": "skyddsglasögon",
+            "translations": {
+              "somali": "indho difaac",
+              "arabic": "نظارات واقية",
+              "tigrinya": "መከላከያ ኣውድት",
+              "polish": "okulary ochronne",
+              "latvian": "aizsargbrilles"
+            }
+          },
+          {
+            "swedish": "handskar",
+            "translations": {
+              "somali": "galoofyada",
+              "arabic": "قفازات",
+              "tigrinya": "እግሪ ጌንፊል",
+              "polish": "rękawice",
+              "latvian": "cimdi"
+            }
+          },
+          {
+            "swedish": "reflexväst",
+            "translations": {
+              "somali": "jaakad milicsi",
+              "arabic": "سترة عاكسة",
+              "tigrinya": "መደምደሚ ጄኬት",
+              "polish": "kamizelka odblaskowa",
+              "latvian": "atstarojoša veste"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
