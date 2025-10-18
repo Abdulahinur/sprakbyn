@@ -24,7 +24,8 @@ flutter:
 
   uses-material-design: true
 
+  flutter:
+  uses-material-design: true
   assets:
-    - assets/images/
     - assets/data/categories.json
-    - assets/data/construction_words.json
+    - assets/images/
