@@ -1,38 +1,358 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="En ren och modern hemsida för Språkbyn.">
+  <title>Språkbyn – Digital byrå</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f7f8fc 0%, #eef1f7 100%);
+      --accent: #7b49ff;
+      --accent-dark: #5933c6;
+      --text-primary: #1f2544;
+      --text-secondary: #55627d;
+      --surface: #ffffff;
+      --shadow: 0 25px 50px -12px rgba(31, 37, 68, 0.2);
+      font-size: 16px;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="sprakbyn">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    body {
+      margin: 0;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-  <title>sprakbyn</title>
-  <link rel="manifest" href="manifest.json">
+    a {
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(123, 73, 255, 0.08);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center;
+      gap: 4rem;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      margin: 0 0 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 32rem;
+    }
+
+    .hero .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, background 0.2s ease;
+      margin-top: 1.5rem;
+    }
+
+    .hero .cta:hover {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 3rem;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+    }
+
+    .hero-visual::before {
+      width: 240px;
+      height: 240px;
+      background: rgba(123, 73, 255, 0.25);
+      top: -120px;
+      right: -60px;
+    }
+
+    .hero-visual::after {
+      width: 180px;
+      height: 180px;
+      background: rgba(95, 215, 255, 0.25);
+      bottom: -90px;
+      left: -40px;
+    }
+
+    .hero-visual .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-visual .card strong {
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      background: rgba(123, 73, 255, 0.12);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .split {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: center;
+    }
+
+    .quote {
+      margin: 0;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+      border-top: 1px solid rgba(123, 73, 255, 0.08);
+      padding: 2rem;
+    }
+
+    footer .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <header>
+    <nav>
+      <div class="logo">SPRÅKBYN</div>
+      <ul>
+        <li><a href="#tjänster">Tjänster</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section hero" id="top">
+      <div>
+        <div class="badge">Digital design &amp; utveckling</div>
+        <h1>Vi bygger rena, moderna och snabba hemsidor.</h1>
+        <p>Språkbyn hjälper småföretag och kreatörer att synas på nätet med fokuserad design, tydligt språk och en teknikstack som håller över tid.</p>
+        <a class="cta" href="#kontakt">Boka ett samtal</a>
+      </div>
+      <div class="hero-visual">
+        <div class="card">
+          <strong>Förstklassig upplevelse</strong>
+          <p>Responsiv design, genomtänkt typografi och optimerad prestanda – allt paketerat i en ren helhet som representerar ditt varumärke.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tjänster">
+      <div class="badge">Vad vi gör</div>
+      <h2>Tjänster som tar dig framåt</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Designsystem</h3>
+          <p>Vi skapar levande designsystem som håller din visuella identitet konsekvent i varje kanal och framtidssäkrar ditt uttryck.</p>
+        </div>
+        <div class="card">
+          <h3>Webbutveckling</h3>
+          <p>Modern front-end baserad på standarder. Tillgängligt, sökmotoroptimerat och byggt för hög prestanda från dag ett.</p>
+        </div>
+        <div class="card">
+          <h3>Innehåll &amp; språk</h3>
+          <p>Klarspråk, storytelling och tonalitet som förklarar det svåra på ett enkelt sätt och skapar förtroende hos dina kunder.</p>
+        </div>
+        <div class="card">
+          <h3>Löpande partnerskap</h3>
+          <p>Vi blir ditt externa digitala team och hjälper dig med vidareutveckling, optimeringar och nya satsningar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="split">
+        <div>
+          <div class="badge">Så arbetar vi</div>
+          <h2>En transparent process</h2>
+          <p>Vi inleder alltid med en strategisk workshop där vi ringar in målgrupp, affärsmål och innehåll. Därefter prototypar vi, testar med riktiga användare och utvecklar med bästa praxis i varje steg.</p>
+          <p>Du får löpande insyn i sprintar, dokumenterade beslut och detaljerade överlämningar. Det är din produkt – vi ger dig verktygen för att lyckas.</p>
+        </div>
+        <div class="card">
+          <p class="quote">“Språkbyn levererade en upplevelse som både stärkte vår identitet och ökade våra konverteringar. Samarbetet var enkelt, tydligt och inspirerande.”</p>
+          <p><strong>Elin Fogelström</strong><br>Marknadschef, Nordväst Kommunikation</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="badge">Starta här</div>
+      <h2>Redo att bygga något nytt?</h2>
+      <div class="split">
+        <p>Berätta om ditt projekt och dina ambitioner så återkopplar vi med förslag på upplägg. Vi jobbar helst i längre samarbeten där vi kan bidra strategiskt över tid.</p>
+        <div class="card">
+          <h3>Kontakta oss</h3>
+          <p><strong>E-post:</strong> <a href="mailto:hej@sprakbyn.se">hej@sprakbyn.se</a></p>
+          <p><strong>Telefon:</strong> <a href="tel:+4610123456">+46 10 123 45 6</a></p>
+          <p><strong>Besök:</strong> Storgatan 12, 114 54 Stockholm</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div>© <span id="year"></span> Språkbyn. Alla rättigheter förbehållna.</div>
+      <div><a href="#top">Till toppen</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
