@@ -1,19 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <source src="pubspec.yaml" type="">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Språkbyn – Förhandsvisning</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top, #ede9ff 0%, #f9f9ff 55%, #ffffff 100%);
+      color: #1f2544;
+    }
+
+    header {
+      padding: 2.5rem 1.5rem 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      margin: 0;
+    }
+
+    header p {
+      margin: 0.75rem 0 0;
+      color: #55627d;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      padding: 1.5rem;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+      box-shadow: 0 25px 50px -12px rgba(31, 37, 68, 0.2);
+      border-radius: 24px;
+      background: white;
+      min-height: 60vh;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.75rem 1.5rem 2.5rem;
+      color: #7b49ff;
+      font-weight: 600;
+    }
+
+    .fallback {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: inherit;
+    }
+
+    .fallback a {
+      color: #7b49ff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <title>hejsan</title>
-        <h1>oqöiwjeioqwejoqöiwjeoiqjwe</h1>
-        <div>
-            <h2>oiquweiqowejiqowe</h2>
-        </div>
-        <h3>oiqöwjeoiqwjeoij</h3>
-    </div>
+  <header>
+    <h1>Språkbyn – Direktförhandsvisning</h1>
+    <p>Fliken är tillbaka! Innehållet laddas direkt från <code>web/index.html</code>.</p>
+    <p class="fallback">Om sidan inte visas kan du öppna den manuellt genom att klicka <a href="web/index.html">här</a>.</p>
+  </header>
+  <main>
+    <iframe src="web/index.html" title="Språkbyn"></iframe>
+  </main>
+  <footer>Lycka till med presentationen!</footer>
 </body>
 </html>
