@@ -1,38 +1,596 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Språkbyn – digital byrå med svensk känsla och storytelling.">
+  <title>Språkbyn – Digital byrå i svensk natur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --text-primary: #2f2216;
+      --text-secondary: rgba(47, 34, 22, 0.72);
+      --accent: #d29d2b;
+      --accent-strong: #b77f12;
+      --surface: #fff9ef;
+      --surface-strong: rgba(255, 249, 239, 0.8);
+      --shadow-soft: 0 18px 45px rgba(62, 38, 11, 0.16);
+      --radius: 28px;
+    }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="sprakbyn">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+    body {
+      margin: 0;
+      font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-  <title>sprakbyn</title>
-  <link rel="manifest" href="manifest.json">
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(20px);
+      background: rgba(246, 242, 234, 0.82);
+      border-bottom: 1px solid rgba(210, 157, 43, 0.12);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.2rem;
+      gap: 2rem;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-strong);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2.2rem;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      align-items: end;
+      padding-top: 7rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      border-radius: var(--radius);
+      filter: brightness(0.7);
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+      color: #fffef9;
+    }
+
+    .hero-content {
+      padding: 4rem 3rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      margin: 0 0 1.5rem;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+    }
+
+    .hero p {
+      margin: 0 0 2.2rem;
+      max-width: 34rem;
+      font-size: 1.1rem;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: var(--text-primary);
+      padding: 0.95rem 1.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 55px rgba(47, 34, 22, 0.25);
+    }
+
+    .cta.secondary {
+      background: rgba(255, 249, 239, 0.82);
+      color: var(--text-primary);
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .hero-media {
+      margin-bottom: -2rem;
+      padding: 2rem;
+      display: grid;
+      gap: 1.4rem;
+      background: var(--surface-strong);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-media .stacked {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .hero-media img {
+      height: 180px;
+    }
+
+    .hero-media img:first-child {
+      grid-column: span 2;
+      height: 220px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .intro-text h2,
+    .services h2,
+    .gallery h2,
+    .process h2,
+    .contact h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .intro-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    .intro-image {
+      position: relative;
+    }
+
+    .intro-image img {
+      height: 100%;
+      min-height: 320px;
+    }
+
+    .intro-note {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 1.8rem;
+      background: rgba(214, 179, 120, 0.85);
+      color: #fffdf5;
+      padding: 1.2rem 1.5rem;
+      border-radius: 20px;
+      max-width: 14rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .services-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      color: #fffdf5;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      background: #111;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.68);
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scale(1.05);
+    }
+
+    .service-card h3 {
+      position: relative;
+      z-index: 1;
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: rgba(255, 253, 245, 0.82);
+    }
+
+    .service-branding::before {
+      background-image: url('https://images.unsplash.com/photo-1474927978274-3e0891b7693f?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    .service-webb::before {
+      background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    .service-kampanj::before {
+      background-image: url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80');
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-grid figure {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-grid img {
+      height: 220px;
+      width: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-grid figure:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-grid figcaption {
+      position: absolute;
+      inset: auto 1.2rem 1.2rem;
+      padding: 0.65rem 1rem;
+      background: rgba(0, 0, 0, 0.45);
+      color: #fffdf5;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.4rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 2.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step span {
+      display: inline-flex;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: rgba(210, 157, 43, 0.2);
+      color: var(--accent-strong);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .step h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.35rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+      align-items: center;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 2.4rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-card h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1.5rem;
+    }
+
+    .contact-card p {
+      margin: 0 0 1.2rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-card a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contact-gallery {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-gallery img {
+      height: 140px;
+    }
+
+    footer {
+      padding: 2.6rem 2rem;
+      text-align: center;
+      color: rgba(47, 34, 22, 0.72);
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 5rem;
+      }
+
+      .hero-content {
+        padding: 3rem 2rem;
+      }
+
+      .hero-media {
+        margin-bottom: 0;
+      }
+
+      .hero-media .stacked {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media img:first-child {
+        grid-column: auto;
+      }
+
+      .intro {
+        gap: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <header>
+    <nav>
+      <div class="logo">Språkbyn</div>
+      <ul>
+        <li><a href="#om">Om oss</a></li>
+        <li><a href="#tjanster">Tjänster</a></li>
+        <li><a href="#galleri">Galleri</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="section hero" aria-label="Hero med svensk natur">
+      <div class="hero-content">
+        <p style="text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.85rem; margin: 0 0 1rem;">Digital byrå i svensk natur</p>
+        <h1>Berättelser som doftar tallskog och nybakat knäckebröd.</h1>
+        <p>Språkbyn väver samman strategi, design och tonalitet med den jordnära elegansen från Sverige. Vi bygger varumärken som känns lika självklara som en solig morgon på västkusten.</p>
+        <div class="button-group">
+          <a class="cta" href="#kontakt">Boka ett samtal</a>
+          <a class="cta secondary" href="#galleri">Utforska arbeten</a>
+        </div>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <div class="stacked">
+          <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=800&q=80" alt="Gyllene fält i kvällsljus">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Solstrimmor genom granskog">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Skärgård i solnedgång">
+        </div>
+      </div>
+    </section>
+
+    <section id="om" class="section intro">
+      <div class="intro-text">
+        <h2>Vi bygger varumärken som känns som hemma</h2>
+        <p>Från norra fjälltoppar till sydliga strandängar – Språkbyn berättar historier som luktar kåda och nyrostat kaffe. Våra designers, skribenter och strateger skapar helhetsupplevelser där människor kan känna igen sig och längta tillbaka.</p>
+        <p>Vi tror på varma färger, taktfull typografi och bildspråk som speglar Sveriges naturliga rytm. Varje projekt får en känsla av handplockad kvalitet och närvaro.</p>
+      </div>
+      <div class="intro-image">
+        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80" alt="Kaffepaus i varm stuga">
+        <div class="intro-note">"Teamet på Språkbyn fick vår lansering att kännas som ett småländskt kalas – varmt, generöst och minnesvärt."</div>
+      </div>
+    </section>
+
+    <section id="tjanster" class="section services">
+      <h2>Tjänster med svensk fingertoppskänsla</h2>
+      <p style="color: var(--text-secondary); max-width: 660px;">Vi skräddarsyr lösningar med respekt för detaljerna – allt från varumärkesstrategi till digitala upplevelser. Varje samarbete startar med en promenad genom era drömmar och mål.</p>
+      <div class="services-cards">
+        <article class="service-card service-branding">
+          <h3>Varumärkesidentitet</h3>
+          <p>Tonträff, visuell palett och storytelling som fångar själen i ert erbjudande.</p>
+        </article>
+        <article class="service-card service-webb">
+          <h3>Digitala upplevelser</h3>
+          <p>Webbplatser och e-handelslösningar som känns lika intuitiva som en promenad i Gamla stan.</p>
+        </article>
+        <article class="service-card service-kampanj">
+          <h3>Kampanjer &amp; innehåll</h3>
+          <p>Filmer, foto och text som fångar stämningen av svensk sommarkväll.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="galleri" class="section gallery">
+      <h2>Ögonblick från vårt Sverige</h2>
+      <p style="color: var(--text-secondary); max-width: 640px;">Ett bildgalleri där vi har samlat känslor, platser och färger som inspirerar våra projekt. Varje bild är en påminnelse om varför vi älskar att skapa för varumärken som vågar vara nära.</p>
+      <div class="gallery-grid">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Skärgård i solnedgång">
+          <figcaption>Skärgårdsljus</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80" alt="Lappland med norrsken">
+          <figcaption>Lappland</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Dimma över fjäll och sjö">
+          <figcaption>Fjällsjö</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80" alt="Gyllene fält i kvällsljus">
+          <figcaption>Åkerfält</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <h2>Process med lugn och tydlighet</h2>
+      <div class="process">
+        <div class="step">
+          <span>01</span>
+          <h3>Lyssna</h3>
+          <p>Vi startar med en varm fika, lyssnar på ert varför och definierar vad ni vill att världen ska känna.</p>
+        </div>
+        <div class="step">
+          <span>02</span>
+          <h3>Skapa</h3>
+          <p>Vårt team formar visuella universum, tonalitet och upplevelser med inspiration från svensk natur.</p>
+        </div>
+        <div class="step">
+          <span>03</span>
+          <h3>Lansera</h3>
+          <p>Vi sjösätter och ser till att allt landar mjukt – från kampanjer till digitala touchpoints.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section">
+      <h2>Kontakta Språkbyn</h2>
+      <div class="contact">
+        <div class="contact-card">
+          <h3>Låt oss ta en promenad</h3>
+          <p>Vi träffas gärna på vårt kontor i Umeå eller digitalt över en kopp kaffe. Hör av dig så hittar vi en tid.</p>
+          <p><a href="mailto:hej@sprakbyn.se">hej@sprakbyn.se</a><br><a href="tel:+46900111222">+46 (0)90 011 12 22</a></p>
+          <p style="margin-top: 2rem; color: var(--text-secondary);">Följ vår vardag med natur, design och dialekter.</p>
+          <p><a href="https://instagram.com" target="_blank" rel="noreferrer">@sprakbyn</a></p>
+        </div>
+        <div class="contact-gallery">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Skärgård i solnedgång">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80" alt="Lappland med norrsken">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="Kustlandskap i norra Sverige">
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Språkbyn. Handsmidd design för varumärken med svensk själ.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
