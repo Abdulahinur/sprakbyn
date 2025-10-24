@@ -1,7 +1,13 @@
 import 'dart:convert';
+
 import 'package:flutter/services.dart' show rootBundle;
 
-Future<List<dynamic>> loadCategories() async {
+import '../models/category.dart';
+
+Future<List<Category>> loadCategoriesFromJson() async {
   final jsonStr = await rootBundle.loadString('assets/data/categories.json');
-  return json.decode(jsonStr) as List<dynamic>;
+  final List<dynamic> jsonList = json.decode(jsonStr) as List<dynamic>;
+  return jsonList
+      .map((rawCategory) => Category.fromJson(rawCategory as Map<String, dynamic>))
+      .toList();
 }
