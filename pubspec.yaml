@@ -11,9 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.6
-  # Add other dependencies as needed
+
+# Add other dependencies as needed
 
 dev_dependencies:
   flutter_test:
@@ -21,11 +21,9 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 flutter:
-
-  uses-material-design: true
-
-  flutter:
   uses-material-design: true
   assets:
     - assets/data/categories.json
+    - assets/data/construction_words.json
+    - assets/data/words_construction.json
     - assets/images/
