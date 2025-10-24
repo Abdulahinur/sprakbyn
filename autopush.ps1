@@ -1,4 +1,4 @@
-# Autopush för Språkbyn – var 5:e sekund
+# Autopush för Språkbyn – var 5:e sekund, robust & självgående
 $branch = "wip/live"
 $intervalSeconds = 5
 
@@ -45,3 +45,4 @@ while ($true) {
 
   Start-Sleep -Seconds $intervalSeconds
 }
+
