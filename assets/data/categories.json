@@ -24,7 +24,7 @@
     "id": "elderly_care",
     "title": "Äldreomsorg",
     "description": "Svenska ord för äldreboende",
-    "image": "assets/images/elderly_care.jpg",
+    "image": "assets/images/elderlycare.jpg",
     "screen": "/elderly_care"
   },
   {
@@ -51,7 +51,7 @@
   {
     "id": "warehouse",
     "title": "Industri & Lager",
-    "description": "Ord för lager- och industrijobb",
+    "description": "Ord för industri, lager och logistik",
     "image": "assets/images/warehouse.jpg",
     "screen": "/warehouse"
   }
